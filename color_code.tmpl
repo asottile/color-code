@@ -9,17 +9,23 @@
             border-radius: 3px;
             display: inline-block;
             margin: 2px;
-            width: 50px;
             height: 20px;
         }
     </style>
 </head>
 <body>
+    #py use_widths = $WIDTHS == 'True'
+    #py width = 50
     #with io.open($FILENAME, 'rb') as f:
-        #py triplet = f.read(3)
-        #while triplet:
-            <div class="square" style="background-color: #${triplet.encode('hex')}"></div>
-            #py triplet = f.read(3)
+        #while True:
+            #py triplet = f.read(3).encode('hex')
+            #if not triplet:
+                #break
+            #end if
+            #if use_widths:
+                #py width = ord(f.read(1) or b'\x00') + 20
+            #end if
+            <div class="square" style="background-color: #${triplet}; width: ${width}px;"></div>
         #end while
     #end with
 </body>
