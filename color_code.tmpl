@@ -1,0 +1,26 @@
+#import io
+
+<!doctype html>
+<html>
+<head>
+    <title>$FILENAME as colors</title>
+    <style>
+        .square {
+            border-radius: 3px;
+            display: inline-block;
+            margin: 2px;
+            width: 50px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    #with io.open($FILENAME, 'rb') as f:
+        #py triplet = f.read(3)
+        #while triplet:
+            <div class="square" style="background-color: #${triplet.encode('hex')}"></div>
+            #py triplet = f.read(3)
+        #end while
+    #end with
+</body>
+</html>
