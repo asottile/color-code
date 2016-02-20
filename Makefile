@@ -1,11 +1,12 @@
-.PHONY: all
+.PHONY: all demo
 all: ./color_code.py
 
 venv:
-	virtualenv venv -ppython2.7 && . venv/bin/activate && pip install yelp-cheetah
+	virtualenv venv -ppython2.7
+	venv/bin/pip install yelp-cheetah
 
 ./%.py: %.tmpl venv
-	. venv/bin/activate && cheetah-compile $^
+	venv/bin/cheetah-compile $^
 
 .PHONY: clean
 clean:
