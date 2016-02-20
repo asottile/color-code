@@ -34,7 +34,8 @@ DOWNLOAD = (
 ON_DISK = (
     '/bin/echo',
     '/bin/cat',
-    'venv/lib/python2.7/site.pyc',
+    'venv/lib/python2.7/copy_reg.pyc',
+    'venv/lib/python2.7/site-packages/_cheetah.so',
 )
 
 
@@ -55,6 +56,19 @@ def mkdirp(path):
             raise
 
 
+def run(filename, output_dir, output_name):
+    print('Making ' + output_name)
+    out_fname = output_name.replace('/', '_')
+    subprocess.check_call((
+        sys.executable, 'color-code.py', '--name', output_name,
+        filename, os.path.join(output_dir, out_fname + '.htm'),
+    ))
+    subprocess.check_call((
+        sys.executable, 'color-code.py', '--name', output_name, '--widths',
+        filename, os.path.join(output_dir, out_fname + '_widths.htm'),
+    ))
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('output_dir')
@@ -63,53 +77,21 @@ def main():
     mkdirp(args.output_dir)
 
     with tempdir() as tmpdir:
+        path = os.path.join(tmpdir, 'tmpfile')
         for name, url in DOWNLOAD:
             resp = urllib.urlopen(url)
-            path = os.path.join(tmpdir, 'tmpfile')
             with open(path, 'wb') as f:
                 f.write(resp.read())
+            run(path, args.output_dir, name)
 
-            subprocess.check_call((
-                sys.executable, 'color-code.py',
-                path, os.path.join(args.output_dir, name + '.htm'),
-            ))
-            subprocess.check_call((
-                sys.executable, 'color-code.py', '--widths',
-                path, os.path.join(args.output_dir, name + '_widths.htm'),
-            ))
+        random.seed(0)
+        some_bytes = b''.join(chr(random.getrandbits(8)) for _ in range(2400))
+        with open(path, 'wb') as f:
+            f.write(some_bytes)
+        run(path, args.output_dir, 'random')
 
     for filename in ON_DISK:
-        subprocess.check_call((
-            sys.executable, 'color-code.py',
-            filename,
-            os.path.join(args.output_dir, filename.replace('/', '_') + '.htm'),
-        ))
-        subprocess.check_call((
-            sys.executable, 'color-code.py', '--widths',
-            filename,
-            os.path.join(
-                args.output_dir, filename.replace('/', '_') + '_widths.htm',
-            ),
-        ))
-
-    random.seed(0)
-    some_bytes = b''.join(chr(random.getrandbits(8)) for _ in range(1200))
-    proc = subprocess.Popen(
-        (
-            sys.executable, 'color-code.py',
-            '/dev/stdin', os.path.join(args.output_dir, 'random.htm'),
-        ),
-        stdin=subprocess.PIPE,
-    )
-    proc.communicate(some_bytes)
-    proc = subprocess.Popen(
-        (
-            sys.executable, 'color-code.py', '--widths',
-            '/dev/stdin', os.path.join(args.output_dir, 'random_widths.htm'),
-        ),
-        stdin=subprocess.PIPE,
-    )
-    proc.communicate(some_bytes)
+        run(filename, args.output_dir, filename)
 
 
 if __name__ == '__main__':

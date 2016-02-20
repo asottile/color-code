@@ -3,12 +3,12 @@
 <!doctype html>
 <html>
 <head>
-    <title>$FILENAME as colors</title>
+    <title>$NAME as colors</title>
     <style>
         body {
             text-align: justify;
         }
-        .square {
+        body div {
             border-radius: 3px;
             display: inline-block;
             margin: 2px;
@@ -28,7 +28,7 @@
             #if use_widths:
                 #py width = ord(f.read(1) or b'\x00') + 20
             #end if
-            <div class="square" style="background-color: #${triplet}; width: ${width}px;"></div>
+            <div style="background: #${triplet}; width: ${width}px;"></div>
         #end while
     #end with
 </body>
