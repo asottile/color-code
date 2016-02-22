@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
+set -e
 
 [ "$TRAVIS_BRANCH" == "master" -a "$TRAVIS_PULL_REQUEST" == "false" ] || exit
 
-git clone "https://${GH_TOKEN}@{GH_REF}" demo >& /dev/null
+git clone "https://${GH_TOKEN}@${GH_REF}" demo >& /dev/null
 
 pushd demo
 git checkout gh-pages
