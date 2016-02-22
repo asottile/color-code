@@ -36,7 +36,6 @@ ON_DISK = (
     '/bin/echo',
     '/bin/cat',
     'venv/lib/python2.7/copy_reg.pyc',
-    'venv/lib/python2.7/site-packages/_cheetah.so',
 )
 
 
