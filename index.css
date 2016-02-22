@@ -1,0 +1,140 @@
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: monospace;
+}
+
+h1, p {
+    color: #333;
+}
+
+h1 {
+    font-size: 48px;
+    font-weight: bold;
+    background: linear-gradient(
+        to right,
+        salmon,
+        tomato,
+        coral,
+        gold,
+        darkseagreen,
+        lightblue,
+        violet,
+        indigo
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+main {
+    height: 100%;
+    width: 100%;
+}
+
+.square {
+    border-radius: 3px;
+    display: inline-block;
+    margin: 1px;
+    height: 36px;
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.square:hover {
+    opacity: 1;
+}
+
+.wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    overflow: hidden;
+    align-content: flex-start;
+}
+
+.wrapper a {
+    flex-grow: 1;
+}
+
+.box {
+    flex-basis: 150px;
+}
+
+.box, .inner-box {
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    opacity: 0.7;
+    min-height: 35px;
+    height: 6vh;
+    margin: 2px;
+    border-radius: 4px;
+}
+
+.box:hover, .inner-box:hover {
+    box-shadow: none;
+    opacity: 1;
+}
+
+.weird-middle{
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.info {
+    margin: 2px;
+    border-radius: 4px;
+    text-align: center;
+    flex-basis: 700px;
+}
+
+.info-wrapper {
+    max-width: 90%;
+    margin: auto;
+
+}
+
+.inner-column {
+    display: flex;
+    flex-flow: column nowrap;
+    flex-grow: 1;
+}
+
+.inner-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: flex-start;
+}
+
+.inner-wrapper a {
+    flex-grow: 1;
+}
+
+@media only screen and (max-width: 768px) and (min-width: 481px) {
+    .info {
+        flex-basis: 450px;
+    }
+
+    h1 {
+        font-size: 36px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .info {
+        flex-basis: 100%;
+    }
+
+    .inner-column {
+        display: none !important;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .wrapper:last-child {
+        display: none;
+    }
+}

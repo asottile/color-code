@@ -1,5 +1,6 @@
 import argparse
 import contextlib
+import json
 import os.path
 import random
 import shutil
@@ -92,6 +93,15 @@ def main():
 
     for filename in ON_DISK:
         run(filename, args.output_dir, filename)
+
+    names = [name for name, _ in DOWNLOAD] + list(ON_DISK) + ['random']
+    names_fnames = [(name.rpartition('/')[2], name.replace('/', '_')) for name in names]
+    with open('index.htm', 'wb') as f:
+        subprocess.check_call(
+            (sys.executable, 'index.py'),
+            stdout=f,
+            env={'NAMES_FNAMES': json.dumps(names_fnames)},
+        )
 
 
 if __name__ == '__main__':

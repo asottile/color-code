@@ -1,0 +1,88 @@
+#import json
+#import random
+#import struct
+
+
+#py random.seed(0)
+
+
+<!doctype html>
+<html>
+    <head>
+        <title>Colour Code</title>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <main>
+
+            $_render_top_bottom(4)
+
+            <div class="weird-middle">
+
+                $_render_info_sides()
+
+                <div class="info">
+                    <div class="info-wrapper">
+                        <h1>color code</h1>
+                        <p>
+                            This is a digital art program made for yelp's hackathon 19 (theme: "color code"). It encodes any file into colored rectangles by converting every 3 bytes of the file into a color and optionally, the 4th byte into a width.
+                        </p>
+                        <a href="https://github.com/asottile/color-code" target="_blank">View on GitHub</a>
+                        <p>
+                            Examples:
+                            #py names_fnames = json.loads($NAMES_FNAMES)
+                            #for name, fname in names_fnames[:-1]:
+                                <a href="demo/${fname}_widths.htm">$name</a>
+                                (<a href="demo/${fname}.htm">w/o widths</a>) *
+                            #end for
+                            <a href="demo/${names_fnames[-1][1]}_widths.htm">$names_fnames[-1][0]</a>
+                            (<a href="demo/${names_fnames[-1][1]}.htm">w/o widths</a>)
+                        </p>
+                    </div>
+                </div>
+
+                $_render_info_sides()
+
+            </div>
+
+            $_render_top_bottom(7)
+
+        </main>
+    </body>
+</html>
+
+#def _render_top_bottom(num)
+    <div>
+        #for i in range($num)
+            <div class="wrapper">
+                #for i in range(int(random.uniform(5, 11)))
+                    #py width = random.uniform(10, 170)
+                    #py color = struct.pack(b'I', random.getrandbits(24)).encode('hex')[:6]
+                    #py names_fnames = json.loads($NAMES_FNAMES)
+                    #py rand = names_fnames[int(random.uniform(0, len(names_fnames) - 1))][1]
+                    <a href="demo/${rand}.htm" target="_blank" style="flex-basis: ${width}px;">
+                        <div class="box" style="background: #${color};"></div>
+                    </a>
+                #end for
+            </div>
+        #end for
+    </div>
+#end def
+
+#def _render_info_sides()
+    <div class="inner-column">
+        #for i in range(8)
+            <div class="inner-wrapper">
+                #for i in range(int(random.uniform(2, 5)))
+                    #py width = random.uniform(20, 100)
+                    #py color = struct.pack(b'I', random.getrandbits(24)).encode('hex')[:6]
+                    #py names_fnames = json.loads($NAMES_FNAMES)
+                    #py rand = names_fnames[int(random.uniform(0, len(names_fnames) - 1))][1]
+                    <a href="demo/${rand}.htm" target="_blank" style="flex-basis: ${width}px;">
+                        <div class="inner-box" style="background: #${color};"></div>
+                    </a>
+                #end for
+            </div>
+        #end for
+    </div>
+#end def
