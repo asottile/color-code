@@ -95,13 +95,17 @@ def main():
         run(filename, args.output_dir, filename)
 
     names = [name for name, _ in DOWNLOAD] + list(ON_DISK) + ['random']
-    names_fnames = [(name.rpartition('/')[2], name.replace('/', '_')) for name in names]
-    with open('index.htm', 'wb') as f:
+    names_fnames = [
+        (name.rpartition('/')[2], name.replace('/', '_')) for name in names
+    ]
+    with open(os.path.join(args.output_dir, 'index.htm'), 'wb') as f:
         subprocess.check_call(
             (sys.executable, 'index.py'),
             stdout=f,
             env={'NAMES_FNAMES': json.dumps(names_fnames)},
         )
+
+    shutil.copy('index.css', args.output_dir)
 
 
 if __name__ == '__main__':

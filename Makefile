@@ -1,5 +1,5 @@
 .PHONY: all demo
-all: color_code.py
+all: color_code.py index.py
 
 venv:
 	virtualenv venv -ppython2.7

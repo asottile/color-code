@@ -9,18 +9,14 @@
 <!doctype html>
 <html>
     <head>
-        <title>Colour Code</title>
+        <title>Color Code</title>
         <link rel="stylesheet" href="index.css">
     </head>
     <body>
         <main>
-
             $_render_top_bottom(4)
-
             <div class="weird-middle">
-
                 $_render_info_sides()
-
                 <div class="info">
                     <div class="info-wrapper">
                         <h1>color code</h1>
@@ -32,37 +28,39 @@
                             Examples:
                             #py names_fnames = json.loads($NAMES_FNAMES)
                             #for name, fname in names_fnames[:-1]:
-                                <a href="demo/${fname}_widths.htm">$name</a>
-                                (<a href="demo/${fname}.htm">w/o widths</a>) *
+                                <a href="${fname}_widths.htm">$name</a>
+                                (<a href="${fname}.htm">w/o widths</a>) *
                             #end for
-                            <a href="demo/${names_fnames[-1][1]}_widths.htm">$names_fnames[-1][0]</a>
-                            (<a href="demo/${names_fnames[-1][1]}.htm">w/o widths</a>)
+                            <a href="${names_fnames[-1][1]}_widths.htm">$names_fnames[-1][0]</a>
+                            (<a href="${names_fnames[-1][1]}.htm">w/o widths</a>)
                         </p>
                     </div>
                 </div>
-
                 $_render_info_sides()
-
             </div>
-
             $_render_top_bottom(7)
-
         </main>
     </body>
 </html>
 
+
+#def _rect(minsize, maxsize)
+    #py width = random.randint(minsize, maxsize)
+    #py color = struct.pack(b'I', random.getrandbits(24)).encode('hex')[:6]
+    #py names_fnames = json.loads($NAMES_FNAMES)
+    #py rand = random.choice(names_fnames)[1] + random.choice(('_widths', ''))
+    <a href="${rand}.htm" target="_blank" style="flex-basis: ${width}px;">
+        <div class="inner-box" style="background: #${color};"></div>
+    </a>
+#end def
+
+
 #def _render_top_bottom(num)
     <div>
-        #for i in range($num)
+        #for _ in range($num)
             <div class="wrapper">
-                #for i in range(int(random.uniform(5, 11)))
-                    #py width = random.uniform(10, 170)
-                    #py color = struct.pack(b'I', random.getrandbits(24)).encode('hex')[:6]
-                    #py names_fnames = json.loads($NAMES_FNAMES)
-                    #py rand = names_fnames[int(random.uniform(0, len(names_fnames) - 1))][1]
-                    <a href="demo/${rand}.htm" target="_blank" style="flex-basis: ${width}px;">
-                        <div class="box" style="background: #${color};"></div>
-                    </a>
+                #for _ in range(random.randint(5, 11))
+                    $_rect(10, 170)
                 #end for
             </div>
         #end for
@@ -71,16 +69,10 @@
 
 #def _render_info_sides()
     <div class="inner-column">
-        #for i in range(8)
+        #for _ in range(8)
             <div class="inner-wrapper">
-                #for i in range(int(random.uniform(2, 5)))
-                    #py width = random.uniform(20, 100)
-                    #py color = struct.pack(b'I', random.getrandbits(24)).encode('hex')[:6]
-                    #py names_fnames = json.loads($NAMES_FNAMES)
-                    #py rand = names_fnames[int(random.uniform(0, len(names_fnames) - 1))][1]
-                    <a href="demo/${rand}.htm" target="_blank" style="flex-basis: ${width}px;">
-                        <div class="inner-box" style="background: #${color};"></div>
-                    </a>
+                #for _ in range(random.randint(2, 5))
+                    $_rect(20, 100)
                 #end for
             </div>
         #end for
