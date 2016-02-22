@@ -59,7 +59,7 @@ def mkdirp(path):
 
 def run(filename, output_dir, output_name):
     print('Making ' + output_name)
-    out_fname = output_name.replace('/', '_')
+    out_fname = output_name.replace('/', '_').lstrip('_')
     subprocess.check_call((
         sys.executable, 'color-code.py', '--name', output_name,
         filename, os.path.join(output_dir, out_fname + '.htm'),
@@ -96,7 +96,8 @@ def main():
 
     names = [name for name, _ in DOWNLOAD] + list(ON_DISK) + ['random']
     names_fnames = [
-        (name.rpartition('/')[2], name.replace('/', '_')) for name in names
+        (name.rpartition('/')[2], name.replace('/', '_').lstrip('_'))
+        for name in names
     ]
     with open(os.path.join(args.output_dir, 'index.htm'), 'wb') as f:
         subprocess.check_call(
