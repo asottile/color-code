@@ -1,4 +1,4 @@
-#import io
+#import codecs
 
 
 <!doctype html>
@@ -20,9 +20,9 @@
 <body>
     #py use_widths = $WIDTHS == 'True'
     #py width = 50
-    #with io.open($FILENAME, 'rb') as f:
+    #with open($FILENAME, 'rb') as f:
         #while True:
-            #py triplet = f.read(3).encode('hex')
+            #py triplet = codecs.encode(f.read(3), 'hex')
             #if not triplet:
                 #break
             #end if
