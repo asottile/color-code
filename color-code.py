@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 import argparse
-import io
 import sys
 import subprocess
 
@@ -14,7 +13,7 @@ def main():
     args = parser.parse_args()
     args.name = args.name or args.filename
 
-    with io.open(args.output, 'wb') as output:
+    with open(args.output, 'wb') as output:
         subprocess.check_call(
             (sys.executable, '-m', 'color_code'),
             env={

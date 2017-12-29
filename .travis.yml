@@ -1,6 +1,5 @@
 language: python
-python:
-    - "2.7"
+python: '3.6'
 script: make
 branches:
     except:
@@ -10,8 +9,7 @@ env:
         - GH_REF: github.com/asottile/color-code
         # GH_TOKEN
         - secure: "j5dcauToYvKIy+DrroEnYBOpSZZPrmFj4qOvJfljCxnybeZtWpUhLBudQNQF+IXFglIZhO91esTUEwgowriO7DsMaTklTShMfmA3v/qAa2OhgEXY+JpyUt0JHSbtH0O/1D6ETQ3mthAnUAdQt4d4b/14tX/xXSwSeiYfV+j7sMIMTG//lefgBCjJ4lwMelfMhlMLAdUiI+3KyNODP+8EA6MtYBn9iheAngIkYnDxu1ggqbbS2p8k9KCSKgQ4Wncu196HPRv4CwM2JIpKtVZrvaM0rbWvV6FhJiaw5hsPsM0usnAxm06lDAQvLNkzKMVOhVEvIfb8uuXLrXoRAni3hPkzSeN87Ql7fgoZMUrqlJDkeMTL7JF2TNcw3W4bV9BJjldP5rFdf42Q8X9RfVSp64QKdDf+FSXdEtC8Q8lraASZ8/V2THy9afaqdrZmgsXdrbGFbRJkYp3x+fvk+a95gbZSD406d+Ru+aiQZHDw6ZMnmIwAZ7ZkdpZlx1s1v74wwrxYQFba2UNvtTWHztJ7SQH7f0DZyDlPwDzZ0qaMsIS8t0CGGz/Jl9+rlppjqEzzAbA27VXIRCwdklWHAtRph6U7p4eKWeLjQsxvjXN+BfnQk50mcXOgnqMXxQHhpDDqCFpCD3nmIj7EfR5GBu0522gMwfJ04L2/OsXy5wmecHo="
-after_success:
-    - ./push-to-gh.sh
+after_success: ./push-to-gh.sh
 sudo: false
 cache:
     directories:

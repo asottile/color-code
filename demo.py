@@ -1,5 +1,4 @@
 import argparse
-import contextlib
 import json
 import os.path
 import random
@@ -35,25 +34,8 @@ DOWNLOAD = (
 ON_DISK = (
     '/bin/echo',
     '/bin/cat',
-    'venv/lib/python2.7/copy_reg.pyc',
+    'venv/lib/python3.6/copy_reg.pyc',
 )
-
-
-@contextlib.contextmanager
-def tempdir():
-    tmp = tempfile.mkdtemp()
-    try:
-        yield tmp
-    finally:
-        shutil.rmtree(tmp)
-
-
-def mkdirp(path):
-    try:
-        os.makedirs(path)
-    except OSError:
-        if not os.path.exists(path):
-            raise
 
 
 def run(filename, output_dir, output_name):
@@ -74,9 +56,9 @@ def main():
     parser.add_argument('output_dir')
     args = parser.parse_args()
 
-    mkdirp(args.output_dir)
+    os.makedirs(args.output_dir, exist_ok=True)
 
-    with tempdir() as tmpdir:
+    with tempfile.TemporaryDirectory() as tmpdir:
         path = os.path.join(tmpdir, 'tmpfile')
         for name, url in DOWNLOAD:
             resp = urllib.urlopen(url)
