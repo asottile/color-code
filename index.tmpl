@@ -1,3 +1,4 @@
+#import codecs
 #import json
 #import random
 #import struct
@@ -14,9 +15,9 @@
     </head>
     <body>
         <main>
-            $_render_top_bottom(4)
+            $self._render_top_bottom(4)
             <div class="weird-middle">
-                $_render_info_sides()
+                $self._render_info_sides()
                 <div class="info">
                     <div class="info-wrapper">
                         <h1>color code</h1>
@@ -36,9 +37,9 @@
                         </p>
                     </div>
                 </div>
-                $_render_info_sides()
+                $self._render_info_sides()
             </div>
-            $_render_top_bottom(20)
+            $self._render_top_bottom(20)
         </main>
     </body>
 </html>
@@ -46,7 +47,7 @@
 
 #def _rect(minsize, maxsize)
     #py width = random.randint(minsize, maxsize)
-    #py color = struct.pack(b'I', random.getrandbits(24)).encode('hex')[:6]
+    #py color = codecs.encode(struct.pack(b'I', random.getrandbits(24)), 'hex')[:6]
     #py names_fnames = json.loads($NAMES_FNAMES)
     #py rand = random.choice(names_fnames)[1] + random.choice(('_widths', ''))
     <a href="${rand}.htm" target="_blank" style="flex-basis: ${width}px;">
@@ -60,7 +61,7 @@
         #for _ in range($num)
             <div class="wrapper">
                 #for _ in range(random.randint(5, 11))
-                    $_rect(10, 170)
+                    $self._rect(10, 170)
                 #end for
             </div>
         #end for
@@ -72,7 +73,7 @@
         #for _ in range(8)
             <div class="inner-wrapper">
                 #for _ in range(random.randint(2, 5))
-                    $_rect(20, 100)
+                    $self._rect(20, 100)
                 #end for
             </div>
         #end for

@@ -6,7 +6,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
-import urllib
+import urllib.request
 
 
 DOWNLOAD = (
@@ -34,7 +34,7 @@ DOWNLOAD = (
 ON_DISK = (
     '/bin/echo',
     '/bin/cat',
-    'venv/lib/python3.6/copy_reg.pyc',
+    'venv/lib/python3.6/__pycache__/copyreg.cpython-36.pyc',
 )
 
 
@@ -61,13 +61,13 @@ def main():
     with tempfile.TemporaryDirectory() as tmpdir:
         path = os.path.join(tmpdir, 'tmpfile')
         for name, url in DOWNLOAD:
-            resp = urllib.urlopen(url)
+            resp = urllib.request.urlopen(url)
             with open(path, 'wb') as f:
                 f.write(resp.read())
             run(path, args.output_dir, name)
 
         random.seed(0)
-        some_bytes = b''.join(chr(random.getrandbits(8)) for _ in range(2400))
+        some_bytes = bytes(random.getrandbits(8) for _ in range(2400))
         with open(path, 'wb') as f:
             f.write(some_bytes)
         run(path, args.output_dir, 'random')
