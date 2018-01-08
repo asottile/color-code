@@ -5,10 +5,9 @@ branches:
     except:
         - gh-pages
 env:
-    global:
-        - GH_REF: github.com/asottile/color-code
-        # GH_TOKEN
-        - secure: "LgKgTSRjUsEZNoaFTFRVmakbdIt7MLULrZF4MJ/Bx8MfslKYFHs5wUMuwBvYnIL2SYvcNHxnP0RtWMoMYCnZxnhwCXVLjy8cREV9jZBCkhn85UkAKYUh6b6WbqeQbkd/Q6slquyh4F7KnBC7/3f025RcXpHQV3kT2KaT5CIqFVOlHCUdqO3hZtXytS5b263zVKQd6/HcXdRwHO3ZI4I1X/hXEdd/t5epG/3XkcVh/g09XcJx7pFE5Go3LJpIaQwXrvVdPy+yOHeq11PTWhI+eCmqFEFvuvt2bZfXFuBdsR/qyPK0y7svsxjHl53AoJ/6emj8OKd9Y1njiFiK8yaKek+dlppqaqs4m3vjMnxJaZbVMERxBFAGBLMw7+crPrHortgh3tBgKrni7Ua7wOahwBQ/YExdJ22obL8Wv41IlZbH4/d8NXNAYp6rhmIt+p2p/Uz1DRAZhQtIyJqObskt0sgUzoNmXQvCe0v8fsWaCuGAbKiPdbdrWY7NQy53zW2Q5cKakZaW072sVQ4DWMegrhBV99AZAPJvrqhp6pz0gyF/4jd58/pVIG6PkVRH4H39k7JKm21wGRqIJN5emwzznueG9QKjoMNXzhFXu5AWQ6iSFaCufBOgfiZ7dCsrqpiZIyta/14GsbOqU/gbTZnsUeisR7/QOi64aZaQ4Gxj8mw="
+    - GH_REF: github.com/asottile/color-code
+    # GH_TOKEN
+    - secure: "LgKgTSRjUsEZNoaFTFRVmakbdIt7MLULrZF4MJ/Bx8MfslKYFHs5wUMuwBvYnIL2SYvcNHxnP0RtWMoMYCnZxnhwCXVLjy8cREV9jZBCkhn85UkAKYUh6b6WbqeQbkd/Q6slquyh4F7KnBC7/3f025RcXpHQV3kT2KaT5CIqFVOlHCUdqO3hZtXytS5b263zVKQd6/HcXdRwHO3ZI4I1X/hXEdd/t5epG/3XkcVh/g09XcJx7pFE5Go3LJpIaQwXrvVdPy+yOHeq11PTWhI+eCmqFEFvuvt2bZfXFuBdsR/qyPK0y7svsxjHl53AoJ/6emj8OKd9Y1njiFiK8yaKek+dlppqaqs4m3vjMnxJaZbVMERxBFAGBLMw7+crPrHortgh3tBgKrni7Ua7wOahwBQ/YExdJ22obL8Wv41IlZbH4/d8NXNAYp6rhmIt+p2p/Uz1DRAZhQtIyJqObskt0sgUzoNmXQvCe0v8fsWaCuGAbKiPdbdrWY7NQy53zW2Q5cKakZaW072sVQ4DWMegrhBV99AZAPJvrqhp6pz0gyF/4jd58/pVIG6PkVRH4H39k7JKm21wGRqIJN5emwzznueG9QKjoMNXzhFXu5AWQ6iSFaCufBOgfiZ7dCsrqpiZIyta/14GsbOqU/gbTZnsUeisR7/QOi64aZaQ4Gxj8mw="
 after_success: ./push-to-gh.sh
 sudo: false
 cache:
