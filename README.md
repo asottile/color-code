@@ -14,5 +14,5 @@ Usage:
 ```
 make
 . venv/bin/activate
-./color-code.py [FILENAME] [OUTPUT] [--widths]
+./color-code.py FILENAME OUTPUT --name NAME [--widths]
 ```
