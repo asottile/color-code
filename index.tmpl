@@ -29,11 +29,11 @@
                             Examples:
                             #py names_fnames = json.loads($NAMES_FNAMES)
                             #for name, fname in names_fnames[:-1]:
-                                <a href="${fname}_widths.htm">$name</a>
-                                (<a href="${fname}.htm">w/o widths</a>) *
+                                <a href="out/${fname}_widths.htm">$name</a>
+                                (<a href="out/${fname}.htm">w/o widths</a>) *
                             #end for
-                            <a href="${names_fnames[-1][1]}_widths.htm">$names_fnames[-1][0]</a>
-                            (<a href="${names_fnames[-1][1]}.htm">w/o widths</a>)
+                            <a href="out/${names_fnames[-1][1]}_widths.htm">$names_fnames[-1][0]</a>
+                            (<a href="out/${names_fnames[-1][1]}.htm">w/o widths</a>)
                         </p>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
     #py color = codecs.encode(struct.pack(b'I', random.getrandbits(24)), 'hex')[:6]
     #py names_fnames = json.loads($NAMES_FNAMES)
     #py rand = random.choice(names_fnames)[1] + random.choice(('_widths', ''))
-    <a href="${rand}.htm" target="_blank" style="flex-basis: ${width}px;">
+    <a href="out/${rand}.htm" target="_blank" style="flex-basis: ${width}px;">
         <div class="inner-box" style="background: #${color};"></div>
     </a>
 #end def

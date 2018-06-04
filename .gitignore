@@ -1,5 +1,7 @@
 *.pyc
 /color_code.py
+/index.htm
 /index.py
+/out
 /venv
 /.mypy_cache

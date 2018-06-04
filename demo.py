@@ -1,8 +1,6 @@
-import argparse
 import json
 import os.path
 import random
-import shutil
 import subprocess
 import sys
 import tempfile
@@ -39,56 +37,53 @@ ON_DISK = (
 )
 
 
-def run(filename: str, output_dir: str, output_name: str) -> None:
+def to_filename(name: str) -> str:
+    return name.replace('/', '_').lstrip('_')
+
+
+def run(filename: str, output_name: str) -> None:
     print(f'Making {output_name}')
-    out_fname = output_name.replace('/', '_').lstrip('_')
+    out_fname = to_filename(output_name)
     subprocess.check_call((
         sys.executable, 'color-code.py', '--name', output_name,
-        filename, os.path.join(output_dir, f'{out_fname}.htm'),
+        filename, f'out/{out_fname}.htm',
     ))
     subprocess.check_call((
         sys.executable, 'color-code.py', '--name', output_name, '--widths',
-        filename, os.path.join(output_dir, f'{out_fname}_widths.htm'),
+        filename, f'out/{out_fname}_widths.htm',
     ))
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser()
-    parser.add_argument('output_dir')
-    args = parser.parse_args()
-
-    os.makedirs(args.output_dir, exist_ok=True)
-
+    os.makedirs('out', exist_ok=True)
     with tempfile.TemporaryDirectory() as tmpdir:
         path = os.path.join(tmpdir, 'tmpfile')
         for name, url in DOWNLOAD:
             resp = urllib.request.urlopen(url)
             with open(path, 'wb') as f:
                 f.write(resp.read())
-            run(path, args.output_dir, name)
+            run(path, name)
 
         random.seed(0)
         some_bytes = bytes(random.getrandbits(8) for _ in range(2400))
         with open(path, 'wb') as f:
             f.write(some_bytes)
-        run(path, args.output_dir, 'random')
+        run(path, 'random')
 
     for filename in ON_DISK:
-        run(filename, args.output_dir, filename)
+        run(filename, filename)
 
     names = [name for name, _ in DOWNLOAD] + list(ON_DISK) + ['random']
     names_fnames = [
-        (name.rpartition('/')[2], name.replace('/', '_').lstrip('_'))
-        for name in names
+        (name.rpartition('/')[2], to_filename(name)) for name in names
     ]
-    with open(os.path.join(args.output_dir, 'index.htm'), 'wb') as f:
+    with open('index.htm', 'wb') as f:
         subprocess.check_call(
             (sys.executable, 'index.py'),
             stdout=f,
             env={'NAMES_FNAMES': json.dumps(names_fnames)},
         )
 
-    shutil.copy('index.css', args.output_dir)
     return 0
 
 
