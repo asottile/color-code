@@ -1,4 +1,5 @@
 *.pyc
-color_code.py
-index.py
-venv
+/color_code.py
+/index.py
+/venv
+/.mypy_cache

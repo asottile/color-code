@@ -1,20 +1,20 @@
 #!/usr/bin/env python
 import argparse
-import sys
 import subprocess
+import sys
 
 
-def main():
+def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument('filename')
     parser.add_argument('output')
     parser.add_argument('--widths', action='store_true')
-    parser.add_argument('--name')
+    parser.add_argument('--name', required=True)
     args = parser.parse_args()
     args.name = args.name or args.filename
 
     with open(args.output, 'wb') as output:
-        subprocess.check_call(
+        return subprocess.call(
             (sys.executable, '-m', 'color_code'),
             env={
                 'FILENAME': args.filename, 'WIDTHS': str(args.widths),
@@ -22,6 +22,7 @@ def main():
             },
             stdout=output,
         )
+
 
 if __name__ == '__main__':
     exit(main())

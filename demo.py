@@ -27,8 +27,9 @@ DOWNLOAD = (
     ),
     (
         'pre-commit-favicon',
-        'http://pre-commit.com/favicon.ico',
-    )
+        'https://raw.githubusercontent.com/pre-commit/pre-commit.github.io/'
+        '8135597/favicon.ico',
+    ),
 )
 
 ON_DISK = (
@@ -38,20 +39,20 @@ ON_DISK = (
 )
 
 
-def run(filename, output_dir, output_name):
-    print('Making ' + output_name)
+def run(filename: str, output_dir: str, output_name: str) -> None:
+    print(f'Making {output_name}')
     out_fname = output_name.replace('/', '_').lstrip('_')
     subprocess.check_call((
         sys.executable, 'color-code.py', '--name', output_name,
-        filename, os.path.join(output_dir, out_fname + '.htm'),
+        filename, os.path.join(output_dir, f'{out_fname}.htm'),
     ))
     subprocess.check_call((
         sys.executable, 'color-code.py', '--name', output_name, '--widths',
-        filename, os.path.join(output_dir, out_fname + '_widths.htm'),
+        filename, os.path.join(output_dir, f'{out_fname}_widths.htm'),
     ))
 
 
-def main():
+def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument('output_dir')
     args = parser.parse_args()
@@ -88,6 +89,7 @@ def main():
         )
 
     shutil.copy('index.css', args.output_dir)
+    return 0
 
 
 if __name__ == '__main__':
