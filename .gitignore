@@ -1,6 +1,6 @@
 *.pyc
 /color_code.py
-/index.htm
+/index.html
 /index.py
 /out
 /venv

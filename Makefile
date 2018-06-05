@@ -15,8 +15,8 @@ demo: color_code.py index.py
 
 .PHONY: push
 push: venv
-	venv/bin/markdown-to-presentation push index.htm index.css out
+	venv/bin/markdown-to-presentation push index.html index.css out
 
 .PHONY: clean
 clean:
-	rm -rf venv color_code.py index.htm out *.pyc
+	rm -rf venv color_code.py index.html out *.pyc

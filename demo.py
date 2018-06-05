@@ -46,11 +46,11 @@ def run(filename: str, output_name: str) -> None:
     out_fname = to_filename(output_name)
     subprocess.check_call((
         sys.executable, 'color-code.py', '--name', output_name,
-        filename, f'out/{out_fname}.htm',
+        filename, f'out/{out_fname}.html',
     ))
     subprocess.check_call((
         sys.executable, 'color-code.py', '--name', output_name, '--widths',
-        filename, f'out/{out_fname}_widths.htm',
+        filename, f'out/{out_fname}_widths.html',
     ))
 
 
@@ -77,7 +77,7 @@ def main() -> int:
     names_fnames = [
         (name.rpartition('/')[2], to_filename(name)) for name in names
     ]
-    with open('index.htm', 'wb') as f:
+    with open('index.html', 'wb') as f:
         subprocess.check_call(
             (sys.executable, 'index.py'),
             stdout=f,
