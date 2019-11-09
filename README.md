@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/asottile/color-code.svg?branch=master)](https://travis-ci.org/asottile/color-code)
+[![Build Status](https://github.com/asottile/color-code/workflows/deploy/badge.svg)](https://github.com/asottile/color-code/actions)
 
 color-code
 ==========

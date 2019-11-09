@@ -1,0 +1,18 @@
+name: deploy
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    name: deploy
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-python@v1
+    - run: pip install virtualenv
+    - name: push
+      run: |
+        export GH_TOKEN="${{ secrets.GITHUB_TOKEN }}"
+        make all push
