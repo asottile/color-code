@@ -1,3 +1,4 @@
+import copyreg
 import json
 import os.path
 import random
@@ -30,11 +31,7 @@ DOWNLOAD = (
     ),
 )
 
-ON_DISK = (
-    '/bin/echo',
-    '/bin/cat',
-    'venv/lib/python3.6/__pycache__/copyreg.cpython-36.pyc',
-)
+ON_DISK = ('/bin/echo', '/bin/cat', os.path.relpath(copyreg.__cached__))
 
 
 def to_filename(name: str) -> str:

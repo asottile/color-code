@@ -1,5 +1,8 @@
-name: pr
-on: [pull_request]
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [master]
 
 jobs:
   build:
@@ -11,3 +14,6 @@ jobs:
     - run: pip install virtualenv
     - run: make
     - run: venv/bin/pre-commit run --all-files --show-diff-on-failure
+    - run: make push
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
