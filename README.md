@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/asottile/color-code/workflows/deploy/badge.svg)](https://github.com/asottile/color-code/actions)
+[![Build Status](https://github.com/asottile/color-code/workflows/ci/badge.svg)](https://github.com/asottile/color-code/actions)
 
 color-code
 ==========
