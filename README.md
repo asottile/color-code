@@ -1,4 +1,5 @@
-[![Build Status](https://github.com/asottile/color-code/workflows/ci/badge.svg)](https://github.com/asottile/color-code/actions)
+[![Build Status](https://dev.azure.com/asottile/asottile/_apis/build/status/asottile.color-code?branchName=master)](https://dev.azure.com/asottile/asottile/_build/latest?definitionId=39&branchName=master)
+[![Build Status](https://github.com/asottile/color-code/workflows/deploy/badge.svg)](https://github.com/asottile/color-code/actions)
 
 color-code
 ==========
