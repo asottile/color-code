@@ -1,5 +1,5 @@
 [![Build Status](https://github.com/asottile/color-code/workflows/deploy/badge.svg)](https://github.com/asottile/color-code/actions)
-[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/asottile/personal-puppet/master.svg)](https://results.pre-commit.ci/latest/github/asottile/personal-puppet/master)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/asottile/color-code/master.svg)](https://results.pre-commit.ci/latest/github/asottile/color-code/master)
 
 color-code
 ==========
