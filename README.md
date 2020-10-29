@@ -1,5 +1,5 @@
-[![Build Status](https://dev.azure.com/asottile/asottile/_apis/build/status/asottile.color-code?branchName=master)](https://dev.azure.com/asottile/asottile/_build/latest?definitionId=39&branchName=master)
 [![Build Status](https://github.com/asottile/color-code/workflows/deploy/badge.svg)](https://github.com/asottile/color-code/actions)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/asottile/personal-puppet/master.svg)](https://results.pre-commit.ci/latest/github/asottile/personal-puppet/master)
 
 color-code
 ==========
