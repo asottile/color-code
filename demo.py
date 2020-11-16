@@ -6,6 +6,7 @@ import subprocess
 import sys
 import tempfile
 import urllib.request
+from typing import Tuple
 
 
 DOWNLOAD = (
@@ -31,7 +32,12 @@ DOWNLOAD = (
     ),
 )
 
-ON_DISK = ('/bin/echo', '/bin/cat', os.path.relpath(copyreg.__cached__))
+ON_DISK: Tuple[str, ...] = (
+    '/bin/echo',
+    '/bin/cat',
+    # https://github.com/python/mypy/issues/9726
+    os.path.relpath(copyreg.__cached__),  # type: ignore
+)
 
 
 def to_filename(name: str) -> str:
