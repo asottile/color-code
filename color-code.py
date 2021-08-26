@@ -10,6 +10,7 @@ def main() -> int:
     parser.add_argument('output')
     parser.add_argument('--widths', action='store_true')
     parser.add_argument('--name', required=True)
+    parser.add_argument('--seed-color')
     args = parser.parse_args()
     args.name = args.name or args.filename
 
@@ -17,8 +18,10 @@ def main() -> int:
         return subprocess.call(
             (sys.executable, '-m', 'color_code'),
             env={
-                'FILENAME': args.filename, 'WIDTHS': str(args.widths),
+                'FILENAME': args.filename,
                 'NAME': args.name,
+                'SEED_COLOR':  str(args.seed_color),
+                'WIDTHS': str(args.widths),
             },
             stdout=output,
         )

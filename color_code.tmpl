@@ -1,6 +1,20 @@
 #import codecs
 
 
+#def transform_color(color):
+    #if $SEED_COLOR == 'None':
+        #return color
+    #else
+        #py n = int(color[:2], 16)
+
+        #py r = int($SEED_COLOR[0:2], 16)
+        #py g = int($SEED_COLOR[2:4], 16)
+        #py b = int($SEED_COLOR[4:6], 16)
+
+        #return f'{r:02x}{g:02x}{b:02x}{n:02x}'
+    #end if
+#end def
+
 <!doctype html>
 <html>
 <head>
@@ -27,6 +41,8 @@
             #if not triplet:
                 #break
             #end if
+            #py triplet = triplet.ljust(6, b'0')
+            #py triplet = self.transform_color(triplet)
             #if use_widths:
                 #py width = ord(f.read(1) or b'\x00') + 20
             #end if
