@@ -36,12 +36,12 @@ ON_DISK: Tuple[str, ...] = (
     '/bin/echo',
     '/bin/cat',
     # https://github.com/python/mypy/issues/9726
-    os.path.relpath(copyreg.__cached__),  # type: ignore
+    copyreg.__cached__,  # type: ignore
 )
 
 
 def to_filename(name: str) -> str:
-    return name.replace('/', '_').lstrip('_')
+    return os.path.basename(name)
 
 
 def run(filename: str, output_name: str) -> None:
