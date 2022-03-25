@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import copyreg
 import json
 import os.path
@@ -32,7 +34,7 @@ DOWNLOAD = (
     ),
 )
 
-ON_DISK: Tuple[str, ...] = (
+ON_DISK: tuple[str, ...] = (
     '/bin/echo',
     '/bin/cat',
     # https://github.com/python/mypy/issues/9726
