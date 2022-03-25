@@ -8,7 +8,6 @@ import subprocess
 import sys
 import tempfile
 import urllib.request
-from typing import Tuple
 
 
 DOWNLOAD = (
